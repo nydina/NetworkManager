@@ -1,9 +1,7 @@
 import Foundation
 
-@available(macOS 12.0, *)
-
 public struct NetworkManager {
-    func fetch<T: Codable>(from urlString: String) async throws -> T {
+    public func fetch<T: Codable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else  {
             throw URLError(.badURL)
         }

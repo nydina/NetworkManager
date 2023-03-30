@@ -1,3 +1,3 @@
 # NetworkManager
 
-A description of this package.
+fetch() allows us to GET and read from API
