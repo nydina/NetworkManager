@@ -1,6 +1,7 @@
 import Foundation
 
 public struct NetworkManager {
+    public init() {}
     public func fetch<T: Codable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else  {
             throw URLError(.badURL)
