@@ -19,7 +19,7 @@ public struct NetworkManager {
         return result
     }
     
-    func add<T: Codable>(urlString: String, body: Data) async throws -> T {
+    public func add<T: Codable>(urlString: String, body: Data) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
