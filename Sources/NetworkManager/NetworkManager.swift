@@ -30,7 +30,7 @@ public struct NetworkManager {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.httpBody = body
         
-        let (data, response) = try await URLSession.shared.upload(for: urlRequest, from: Data())
+        let (data, response) = try await URLSession.shared.upload(for: urlRequest, from: body)
         
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
