@@ -19,7 +19,7 @@ public struct NetworkManager {
         return result
     }
     
-    public func add<T: Codable>(urlString: String) async throws -> T {
+    func add<T: Codable>(urlString: String, body: Data) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -28,7 +28,7 @@ public struct NetworkManager {
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: [:] as [String: Any])
+        urlRequest.httpBody = body
         
         let (data, response) = try await URLSession.shared.upload(for: urlRequest, from: Data())
         
@@ -74,7 +74,7 @@ public struct NetworkManager {
             throw error
         }
     }
-
+    
     public func delete(from urlString: String) async throws {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
